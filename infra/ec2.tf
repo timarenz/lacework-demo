@@ -204,8 +204,8 @@ resource "aws_instance" "windows" {
 
   provisioner "remote-exec" {
     inline = [
-      "Invoke-WebRequest -Uri ${var.lacework_windows_agent_msi_url} -OutFile LWDataCollector.msi",
-      "Start-Process msiexec.exe -ArgumentList \"/i\",\"LWDataCollector.msi\",\"ACCESSTOKEN=${data.lacework_agent_access_token.linux.token}\",\"SERVERURL=${var.lacework_agent_server_url}\",\"/passive\" -Wait"
+      "powershell.exe -sta -ExecutionPolicy Unrestricted -Command Invoke-WebRequest -Uri ${var.lacework_windows_agent_msi_url} -OutFile LWDataCollector.msi",
+      "powershell.exe -sta -ExecutionPolicy Unrestricted -Command Start-Process msiexec.exe -ArgumentList \"/i\",\"LWDataCollector.msi\",\"ACCESSTOKEN=${data.lacework_agent_access_token.linux.token}\",\"SERVERURL=${var.lacework_agent_server_url}\",\"/passive\" -Wait"
     ]
   }
 }
