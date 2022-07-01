@@ -1,0 +1,5 @@
+owner_name                        = "tim"
+environment_name                  = "tim-demo"
+lacework_agent_server_url         = "https://api.fra.lacework.net"
+lacework_linux_agent_token_name   = "ec2-linux"
+lacework_windows_agent_token_name = "ec2-windows"
