@@ -5,17 +5,21 @@ provider "aws" {
 data "aws_caller_identity" "current" {}
 
 data "http" "current_ip" {
-  # url = "https://api.ipify.org/?format=json"
-  url = "https://api4.my-ip.io/ip.json"
+  url = "https://4.icanhazip.com/"
 }
 
 resource "random_id" "id" {
   byte_length = 3
 }
 
+locals {
+  name       = "${var.owner_name}-${var.environment_name}-${random_id.id.hex}"
+  current_ip = chomp(data.http.current_ip.body)
+}
+
 module "environment" {
   source           = "git::https://github.com/timarenz/terraform-aws-environment.git?ref=v0.1.3"
-  name             = "${var.environment_name}-${random_id.id.hex}"
+  name             = local.name
   environment_name = var.environment_name
   owner_name       = var.owner_name
   public_subnets = [
