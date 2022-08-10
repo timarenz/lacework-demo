@@ -41,7 +41,7 @@ variable "lacework_linux_agent_token_name" {
 }
 
 variable "lacework_windows_agent_token_name" {
-  description = "Name of the Lacework linux agent token to use to deploy the Lacework agent. This token will not be created using Terraform and there has to be preexisting in your Lacework account."
+  description = "Name of the Lacework Windows agent token to use to deploy the Lacework agent. This token will not be created using Terraform and there has to be preexisting in your Lacework account."
   type        = string
 }
 
